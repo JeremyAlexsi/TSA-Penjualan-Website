@@ -19,4 +19,3 @@ class ShopController extends Controller
         return view('details',compact('product', 'rproducts'));
     }
 }
-
