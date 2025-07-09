@@ -360,7 +360,7 @@
                         <a href="{{ route('home.index') }}"
                             class="menu-link menu-link_us-s text-uppercase fw-medium">Home</a>
                         <span class="breadcrumb-separator menu-link fw-medium ps-1 pe-1">/</span>
-                        <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">The Shop</a>
+                        <a href="#" class="menu-link menu-link_us-s text-uppercase fw-medium">Belanja</a>
                     </div>
 
                     <div
@@ -439,27 +439,20 @@
                                                 <use href="#icon_next_sm" />
                                             </svg></span>
                                     </div>
-                                    @if (Cart::instance('cart')->content()->where('id', $product->id)->count() > 0)
-                                        <a href="{{ route('keranjang.index') }}"
-                                            class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium btn btn-warning mb-3">Go
-                                            to Cart</a>
+                                    @if (in_array($product->id, $inCartIds))
+                                        <a href="{{ route('cart.index') }}"
+                                            class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium btn btn-warning mb-3">
+                                            Go to Cart
+                                        </a>
                                     @else
-                                        <form name="addtocart-form" method="post"
-                                            action="{{ route('keranjang.add') }}">
+                                        <form name="addtocart-form" method="POST"
+                                            action="{{ route('cart.add', $product->id) }}">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $product->id }}" />
-                                            <input type="hidden" name="quantity" value="1" />
-                                            <input type="hidden" name="name" value="{{ $product->name }}" />
-                                            <input type="hidden" name="price"
-                                                value="{{ $product->sale_price == '' ? $product->regular_price : $product->sale_price }}" /><input
-                                                type="hidden" name="id" value="{{ $product->id }}" />
-                                            <input type="hidden" name="name" value="{{ $product->name }}" />
-                                            <input type="hidden" name="price"
-                                                value="{{ $product->sale_price == '' ? $product->regular_price : $product->sale_price }}" />
-                                            <button
-                                                type="submit"
+                                            <button type="submit"
                                                 class="pc__atc btn anim_appear-bottom btn position-absolute border-0 text-uppercase fw-medium"
-                                                data-aside="cartDrawer" title="Add To Cart">Add To Cart</button>
+                                                data-aside="cartDrawer" title="Add To Cart">
+                                                Add To Cart
+                                            </button>
                                         </form>
                                     @endif
                                 </div>

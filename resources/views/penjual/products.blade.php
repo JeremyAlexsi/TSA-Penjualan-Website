@@ -32,8 +32,22 @@
                             </div>
                         </form>
                     </div>
+
+                    {{-- Form Pajak --}}
+                    <form action="{{ route('penjual.update-tax') }}" method="POST" class="flex items-center gap10">
+                        @csrf
+                        <label for="global_tax" class="form-label mb-0">Tax (%)</label>
+                        <input type="number" name="global_tax" id="global_tax" class="form-control w-auto"
+                            value="{{ $products->first()->tax_percent ?? 10 }}" min="0" max="100"
+                            step="0.1">
+                        <button type="submit" class="tf-button style-1">Update</button>
+                    </form>
+
+                    {{-- Tombol Add Product --}}
                     <a class="tf-button style-1 w208" href="add-product.html"><i class="icon-plus"></i>Add new</a>
                 </div>
+
+
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead>
@@ -53,45 +67,36 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $product)
-                            <tr>
-                                <td>{{ $product->id }}</td>
-                                <td class="pname">
-                                    <div class="image">
-                                        <img src="{{ asset('uploads/products/thumbnails') }}/{{ $product->image }}" alt="{{ $product->name }}" class="image">
-                                    </div>
-                                    <div class="name">
-                                        <a href="#" class="body-title-2">{{ $product->name }}</a>
-                                        <div class="text-tiny mt-3">{{ $product->slug }}</div>
-                                    </div>
-                                </td>
-                                <td>{{ $product->regular_price }}</td>
-                                <td>{{ $product->sale_price }}</td>
-                                <td>{{ $product->SKU }}</td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->brand->name }}</td>
-                                <td>{{ $product->feature == 0 ? "No":"Yes" }}</td>
-                                <td>{{ $product->stock_status }}</td>
-                                <td>{{ $product->quantity }}</td>
-                                <td>
-                                    <div class="list-icon-function">
-                                        <a href="#" target="_blank">
-                                            <div class="item eye">
-                                                <i class="icon-eye"></i>
-                                            </div>
-                                        </a>
-                                        <a href="#">
-                                            <div class="item edit">
-                                                <i class="icon-edit-3"></i>
-                                            </div>
-                                        </a>
-                                        <form action="#" method="POST">
-                                            <div class="item text-danger delete">
-                                                <i class="icon-trash-2"></i>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td class="pname">
+                                        <div class="image">
+                                            <img src="{{ asset('uploads/products/thumbnails') }}/{{ $product->image }}"
+                                                alt="{{ $product->name }}" class="image">
+                                        </div>
+                                        <div class="name">
+                                            <a href="#" class="body-title-2">{{ $product->name }}</a>
+                                            <div class="text-tiny mt-3">{{ $product->slug }}</div>
+                                        </div>
+                                    </td>
+                                    <td>{{ $product->regular_price }}</td>
+                                    <td>{{ $product->sale_price }}</td>
+                                    <td>{{ $product->SKU }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->brand->name }}</td>
+                                    <td>{{ $product->feature == 0 ? 'No' : 'Yes' }}</td>
+                                    <td>{{ $product->stock_status }}</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    <td>
+                                        <div class="list-icon-function">
+                                            <a href="{{ route('penjual.products.editPrice', $product->id) }}">
+                                                <div class="item edit">
+                                                    <i class="icon-edit-3"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

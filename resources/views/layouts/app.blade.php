@@ -313,7 +313,7 @@
                             <a href="{{ route('shop.index') }}" class="navigation__link">Belanja</a>
                         </li>
                         <li class="navigation__item">
-                            <a href="{{ route('keranjang.index') }}" class="navigation__link">Keranjang</a>
+                            <a href="{{ route('cart.index') }}" class="navigation__link">Keranjang</a>
                         </li>
                         <li class="navigation__item">
                             <a href="about.html" class="navigation__link">Tentang</a>
@@ -403,7 +403,7 @@
                             <a href="{{ route('shop.index') }}" class="navigation__link">Belanja</a>
                         </li>
                         <li class="navigation__item">
-                            <a href="{{ route('keranjang.index') }}" class="navigation__link">Keranjang</a>
+                            <a href="{{ route('cart.index') }}" class="navigation__link">Keranjang</a>
                         </li>
                         <li class="navigation__item">
                             <a href="about.html" class="navigation__link">Tentang</a>
@@ -495,7 +495,7 @@
                             </svg>
                         </a>
 
-                        <a href="{{ route('keranjang.index') }}" class="header-tools__item header-tools__cart">
+                        <a href="{{ route('cart.index') }}" class="header-tools__item header-tools__cart">
                             <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <use href="#icon_cart" />
@@ -519,7 +519,7 @@
                     <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
                         <div class="logo">
                             <a href="{{ route('home.index') }}">
-                                <img src="{{ asset('assets/images/tsaTiny.png') }}" alt="SurfsideMedia"
+                                <img src="{{ asset('assets/images/tsa1.png') }}" alt="SurfsideMedia"
                                     class="logo__image d-block" />
                             </a>
                         </div>
