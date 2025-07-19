@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\ShopController;
@@ -29,11 +30,19 @@ Route::middleware([AuthPenjual::class])->group(function () {
     Route::post('/dashboard/products/update-tax', [PenjualController::class, 'updateGlobalTax'])->name('penjual.update-tax');
     Route::get('/dashboard/products/{id}/edit-price', [PenjualController::class, 'editProductPrice'])->name('penjual.products.editPrice');
     Route::post('/dashboard/products/{id}/update-price', [PenjualController::class, 'updateProductPrice'])->name('penjual.products.updatePrice');
+    Route::get('/dashboard/orders', [PenjualController::class, 'orders'])->name('penjual.orders');
+    Route::get('/dashboard/orders/{id}', [PenjualController::class, 'orderDetails'])->name('penjual.orders.details');
+    Route::post('/dashboard/orders/{id}/status', [PenjualController::class, 'updateOrderStatus'])->name('penjual.orders.status');
 });
+
+Route::post('/midtrans/notification', [CheckoutController::class, 'notificationHandler']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.process');
+    Route::get('/checkout/success/{order_id}', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/failed', [CheckoutController::class, 'failed'])->name('checkout.failed');
 });

@@ -35,8 +35,10 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="{{ route('penjual.dashboard') }}" id="site-logo-inner">
-                            <img class="" id="logo_header_1" alt="" src="{{ asset('assets/images/tsa1.png')}}"
-                                data-light="{{ asset('assets/images/tsa1.png')}}" data-dark="{{ asset('assets/images/tsa1.png')}}">
+                            <img class="" id="logo_header_1" alt=""
+                                src="{{ asset('assets/images/tsa1.png') }}"
+                                data-light="{{ asset('assets/images/tsa1.png') }}"
+                                data-dark="{{ asset('assets/images/tsa1.png') }}">
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -118,13 +120,13 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
-                                            <a href="orders.html" class="">
+                                            <a href="{{ route('penjual.orders') }}" class="">
                                                 <div class="text">List Pesanan</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="order-tracking.html" class="">
-                                                <div class="text">Order tracking</div>
+                                            <a href="#">
+                                                <div class="text">Order Tracking</div>
                                             </a>
                                         </li>
                                     </ul>
@@ -176,9 +178,10 @@
                             <div class="header-left">
                                 <a href="index-2.html">
                                     <img class="" id="logo_header_mobile" alt=""
-                                        src="{{ asset('assets/images/tsa1.png')}}" data-light="{{ asset('assets/images/tsa1.png')}}"
-                                        data-dark="{{ asset('assets/images/tsa1.png')}}" data-width="154px" data-height="52px"
-                                        data-retina="{{ asset('assets/images/tsa1.png')}}">
+                                        src="{{ asset('assets/images/tsa1.png') }}"
+                                        data-light="{{ asset('assets/images/tsa1.png') }}"
+                                        data-dark="{{ asset('assets/images/tsa1.png') }}" data-width="154px"
+                                        data-height="52px" data-retina="{{ asset('assets/images/tsa1.png') }}">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>

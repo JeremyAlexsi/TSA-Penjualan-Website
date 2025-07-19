@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,13 +27,24 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    // protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->utype === 'PJL') {
+            return redirect()->route('penjual.dashboard');
+        }
+
+        return redirect('/'); // fallback
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

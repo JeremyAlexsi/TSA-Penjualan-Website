@@ -141,7 +141,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <a href="#" class="btn btn-primary btn-checkout mt-3">PROCEED TO CHECKOUT</a>
+                                <form action="{{ route('checkout.process') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-checkout mt-3">PROCEED TO
+                                        CHECKOUT</button>
+                                </form>
                             </div>
                         </div>
                     </div>

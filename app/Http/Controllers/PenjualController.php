@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -103,6 +104,32 @@ class PenjualController extends Controller
         $product->save();
 
         return redirect()->route('penjual.products')->with('success', 'Harga produk berhasil diperbarui.');
+    }
+
+    public function orders()
+    {
+        $orders = Transaction::with('user')->orderBy('created_at', 'DESC')->paginate(10);
+        return view('penjual.orders', compact('orders'));
+    }
+
+    public function orderDetails($id)
+    {
+        $order = Transaction::with([
+            'user',
+            'items.product.brand',
+            'items.product.category'
+        ])->findOrFail($id);
+
+        return view('penjual.order-details', compact('order'));
+    }
+
+
+    public function updateOrderStatus(Request $request, $id)
+    {
+        $order = Transaction::findOrFail($id);
+        $order->status = $request->status;
+        $order->save();
+        return redirect()->back()->with('success', 'Status pesanan berhasil diperbarui.');
     }
 
 
